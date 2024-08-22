@@ -1,3 +1,4 @@
+#  Local .terraform directories
 # Local .terraform directories
 **/.terraform/*
 
@@ -5,6 +6,14 @@
 *.tfstate
 *.tfstate.*
 
+# .tfvars files
+*.tfvars
+
+.terraform/*
+logs
+common/README.md
+
+OLD/
 # Crash log files
 crash.log
 crash.*.log
