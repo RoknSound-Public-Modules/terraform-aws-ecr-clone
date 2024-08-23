@@ -98,7 +98,7 @@ resource "null_resource" "copy_images" {
   for_each = local.images
 
   triggers = {
-    image = each.value
+    image = each.value.name
   }
 
   provisioner "local-exec" {
