@@ -63,8 +63,8 @@ locals {
 
 
 resource "aws_ecr_repository" "image_repos" {
-  for_each = local.images
-  name     = "${local.repo_parent_name}/${each.value.name}"
+  for_each = toset([for image in local.images : image.name])
+  name     = "${local.repo_parent_name}/${each.key}"
 
   image_tag_mutability = var.image_tag_mutability
   image_scanning_configuration {
@@ -78,7 +78,7 @@ resource "aws_ecr_repository" "image_repos" {
   tags = merge(
     local.base_tags,
     tomap({
-      "Name"        = format("ecr_%v/%v", var.application_name, each.value.name)
+      "Name"        = format("ecr_%v/%v", var.application_name, each.key)
       "Environment" = "application"
     }),
   )
