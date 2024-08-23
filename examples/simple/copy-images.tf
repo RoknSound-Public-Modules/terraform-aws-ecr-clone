@@ -1,5 +1,5 @@
 module "images" {
-  source = "git@github.e.it.census.gov:terraform-modules/aws-ecr-copy-images.git"
+  source = "../.."
 
   application_list = ["app1", "app2"]
   application_name = "org-project"

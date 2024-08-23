@@ -43,7 +43,7 @@ locals {
 }
 
 module "images" {
-  source = "git@github.e.it.census.gov:terraform-modules/aws-ecr-copy-images.git"
+  source = "HappyPathway/ecr-clone/aws"
 
   application_list = ["app1", "app2"]
   application_name = "org-project"
@@ -66,12 +66,6 @@ This creates the following ECR images
 
 ```	
 Repository name URI Created at Tag immutability Scan on push Encryption type
-
-org-project/app1	817869416306.dkr.ecr.us-gov-east-1.amazonaws.com/org-project/app1 August 22, 2022, 13:12:06 (UTC-04)	Enabled	Enabled	KMS
-org-project/app2	817869416306.dkr.ecr.us-gov-east-1.amazonaws.com/org-project/app2 August 22, 2022, 13:12:06 (UTC-04)	Enabled	Enabled	KMS
-org-project/nginx-118	817869416306.dkr.ecr.us-gov-east-1.amazonaws.com/org-project/nginx-118 August 22, 2022, 12:43:57 (UTC-04)	Enabled	Enabled	KMS
-org-project/nodejs-14	817869416306.dkr.ecr.us-gov-east-1.amazonaws.com/org-project/nodejs-14 August 22, 2022, 12:43:57 (UTC-04)	Enabled	Enabled	KMS
-org-project/openjdk-8	817869416306.dkr.ecr.us-gov-east-1.amazonaws.com/org-project/openjdk-8 August 22, 2022, 12:43:57 (UTC-04)	Enabled	Enabled	KMS
 ```
 
 # Caveats

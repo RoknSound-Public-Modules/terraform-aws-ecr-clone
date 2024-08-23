@@ -25,7 +25,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add pasted text output from terraform plan or apply (or a screenshot, but text is preferred) to help explain your problem.
 
 **Server (please complete the following information):**
- - Hostname [e.g. redwood.cto.census.gov]
+ - Hostname [e.g. happypathway.com]
  - OS Version [e.g. RHEL6, RHEL7]
 
 **Additional context**
