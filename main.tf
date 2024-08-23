@@ -73,7 +73,7 @@ resource "aws_ecr_repository" "image_repos" {
   #               --region "$region" \
   #               > /dev/null 2>&1 || return $?
   for_each = local.images
-  name     = each.value.name
+  name     = each.value.dest_full_path
 
   image_tag_mutability = var.image_tag_mutability
   image_scanning_configuration {
