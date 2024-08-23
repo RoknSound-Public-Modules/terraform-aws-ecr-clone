@@ -87,7 +87,7 @@ resource "aws_ecr_repository" "image_repos" {
   tags = merge(
     local.base_tags,
     tomap({
-      "Name"        = format("ecr_%v/%v", var.application_name, each.key)
+      "Name"        = format("ecr_%v/%v", var.application_name, each.value.name)
       "Environment" = "application"
     }),
   )
