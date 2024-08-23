@@ -46,7 +46,7 @@ locals {
       name             = i.name,
       tag              = i.tag,
       key              = format("%v#%v", i.name, i.tag),
-      source_full_path = format("%v/%v:%v", i.source_registry, i.source_image, lookup(i, "source_tag", i.tag)),
+      source_full_path = format("%v/%v:%v", i.source_registry, i.source_image, lookup(i, "source_tag") == null ? i.tag : lookup(i, "source_tag")),
       dest_full_path   = format("%v/%v/%v:%v", local.account_ecr_registry, local.repo_parent_name, i.name, i.tag),
   })) }
   commands = {
