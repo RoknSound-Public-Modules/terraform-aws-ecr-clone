@@ -47,9 +47,7 @@ locals {
       tag              = i.tag,
       key              = format("%v#%v", i.name, i.tag),
       source_full_path = format("%v/%v:%v", i.source_registry, i.source_image, lookup(i, "source_tag", i.tag)),
-      dest_registry    = local.account_ecr_registry,
       dest_full_path   = format("%v/%v/%v:%v", local.account_ecr_registry, local.repo_parent_name, i.name, i.tag),
-      dest_repository  = format("%v/%v", local.repo_parent_name, i.name),
   })) }
   commands = {
     for image in local.images : image.key => concat(
@@ -65,13 +63,6 @@ locals {
 
 
 resource "aws_ecr_repository" "image_repos" {
-  #  aws ecr create-repository \
-  #               --image-tag-mutability "$mutability" \
-  #               --image-scanning-configuration "scanOnPush=true" \
-  #               --encryption-configuration "encryptionType=KMS" \
-  #               --repository-name "$repository" \
-  #               --region "$region" \
-  #               > /dev/null 2>&1 || return $?
   for_each = local.images
   name     = "${local.repo_parent_name}/${each.value.name}"
 

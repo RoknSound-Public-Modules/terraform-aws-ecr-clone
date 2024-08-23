@@ -29,7 +29,7 @@ variable "image_config" {
     dest_path       = string,
     source_registry = string,
     source_image    = string,
-    source_tag      = string,
+    source_tag      = optional(string),
     enabled         = bool,
   }))
   default = []
