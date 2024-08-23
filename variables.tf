@@ -1,6 +1,7 @@
 variable "profile" {
   description = "AWS Profile Name, used generating key rotation file"
   type        = string
+  default     = null
 }
 
 variable "application_name" {
@@ -37,14 +38,14 @@ variable "image_config" {
 variable "source_username" {
   description = "OCI source repository username"
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "source_password" {
   description = "OCI source repository password"
   type        = string
-  #  sensitive   = true
-  default = null
+  sensitive   = true
+  default     = ""
 }
 
 variable "destination_username" {
@@ -56,7 +57,39 @@ variable "destination_username" {
 variable "destination_password" {
   description = "OCI destination repository password"
   type        = string
-  #  sensitive   = true
-  default = null
+  sensitive   = true
+  default     = null
 }
 
+
+
+variable "image_tag_mutability" {
+  description = "The image tag mutability setting for the repository. Must be one of: MUTABLE or IMMUTABLE"
+  type        = string
+  default     = "MUTABLE"
+}
+
+variable "image_scan_on_push" {
+  description = "The image scanning configuration for the repository. Must be one of: true or false"
+  type        = bool
+  default     = true
+}
+
+variable "encryption_type" {
+  description = "The encryption configuration for the repository. Must be one of: AES256 or KMS"
+  type        = string
+  default     = "KMS"
+}
+
+
+variable "source_insecure" {
+  description = "Source registry is insecure"
+  type        = string
+  default     = false
+}
+
+variable "destination_insecure" {
+  description = "Destination registry is insecure"
+  type        = string
+  default     = false
+}
