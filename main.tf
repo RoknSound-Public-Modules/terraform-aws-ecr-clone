@@ -54,9 +54,9 @@ locals {
   commands = {
     for image in local.images : image.key => concat(
       ["skopeo copy --insecure-policy"],
-      var.source_username == "" ? ["--src-creds=${var.source_username}:${var.source_password}"] : ["--src-no-creds"],
+      var.source_username == null ? ["--src-creds=${var.source_username}:${var.source_password}"] : ["--src-no-creds"],
       var.source_insecure ? ["--src-tls-verify=false"] : ["--src-tls-verify=true"],
-      var.destination_username == "" ? ["--dest-creds=${local.destination_username}:${local.destination_password}"] : ["--dest-no-creds"],
+      var.destination_username == null ? ["--dest-creds=${local.destination_username}:${local.destination_password}"] : ["--dest-no-creds"],
       var.destination_insecure ? ["--dest-tls-verify=false"] : ["--dest-tls-verify=true"],
       ["docker://${image.source_full_path}", "docker://${image.dest_full_path}"]
     )
