@@ -1,8 +1,10 @@
-name: "Terraform"
+name: "Gtag"
 
 on:
   workflow_dispatch:
-  pull_request:
+  push:
+    branches:
+      - main
     
 jobs:
   terraform:
@@ -11,8 +13,19 @@ jobs:
       terraform_version: 1.9.1
       terraform_api: app.terraform.io
       github_username: djaboxx
-      github_email: dave@roknsound.com
+      github_email: git@roknsound.com
       github_org: HappyPathway
     secrets:
       TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+  gtag:
+    needs: terraform
+    uses: HappyPathway/centralized-actions/.github/workflows/gtag.yml@main
+    with:
+      patch: true
+      github_org: HappyPathway
+      github_username: djaboxx
+      github_email: git@roknsound.com
+    secrets:
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
